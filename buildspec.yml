@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Starting build..."
+  build:
+    commands:
+      - echo "Build stage - nothing to build for static site"
+  post_build:
+    commands:
+      - echo "Syncing files to S3"
+      - aws s3 sync . s3://ci-cd-pipeline45 --delete
+artifacts:
+  files:
+    - '**/*'
